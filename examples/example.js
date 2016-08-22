@@ -1,15 +1,4 @@
-// exame.js
-
-// Welcome to ocessingLiveJS
-
-/* JS is a live ocessing intereter that use Javascri.
-
-Simy double click on the js.jar file and select a javascri file (like this one)
-
-The file you selected will be read at each frame.
-The sketch window is resizable by hand.
-
-*/
+// example.js
 
 define("i", 0)
 
