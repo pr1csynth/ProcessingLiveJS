@@ -15,15 +15,15 @@ You don't need to have processing on your computer, all the magic is in the jar.
 
 ## WHAT TO EXPECT
 
-The file you selected will be read each time you save it. (Auto-save plugin may exists for your text editor : [Auto-save for Sublime Text](https://packagecontrol.io/packages/auto-save).
+The file you selected will be read each time you save it. (Auto-save plugin may exists for your text editor : [Auto-save for Sublime Text](https://packagecontrol.io/packages/auto-save).)
 You will be able to do live coding on Processing.
 The sketch window is resizable by hand.
 
-Keep in mind this is an experiment made in less than 2 hours, you can quickly break it ! (Avoid redefining things! )
+Keep in mind this is an experiment made in less than 2 hours, you can quickly break it ! (Avoid redefining things!) Also some thing like `frameRate` won't work because the field has the same name as the method `frameRate()`.
 
 ## THINGS TO KNOW
 
-The code you write in the JS file is like you're executing it in the draw.
+The code you write in the JS file is executed as if it was in the `draw` block of a classic sketch.
 
 The renderer is set to `P3D`.
 
@@ -33,9 +33,12 @@ You can define global variable the traditional way, but it will be reset at each
 	define("variableName", initValue); 
 ```
 
+### How the hell that's working ?
+
+This is not a rewrite/reimplementation of Processing, all the functionalities as you know them are in. It uses the Nashorn Script Engine to import the Processing context in a Javascript Context. See Nashorh documentation here : [Oracle Nashorn: A Next-Generation JavaScript Engine for the JVM](http://www.oracle.com/technetwork/articles/java/jf14-nashorn-2126515.html)
 
 
-### EXAMPLE
+## EXAMPLE
 
 ```javascript
 	// example.js
