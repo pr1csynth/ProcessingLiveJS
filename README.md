@@ -1,13 +1,13 @@
 # ProcessingLiveJS
 
-PLJS is a live Processing interpreter that use Javascript.
+PLJS is an interface between Processing and a always refreshed Javascript file. PLJS uses the Nashorn script engine to manipulate Java's objects.
 
 ![screenshot from 2016-08-22 13-30-57](https://cloud.githubusercontent.com/assets/321345/17853432/b05113ba-686c-11e6-92d0-bea08a830032.png)
 
 
 ## USAGE
 
-Simply download and run the [pljs.jar file](https://github.com/procsynth/ProcessingLiveJS/raw/master/dist/pljs.jar) and select a javascript file ([like the one in the example folder](https://raw.githubusercontent.com/procsynth/ProcessingLiveJS/master/examples/example.js), or at the bottom of this file).
+Simply download and run the [pljs.jar](https://github.com/procsynth/ProcessingLiveJS/raw/master/dist/pljs.jar) file and select a javascript file ([like the one in the example folder](https://raw.githubusercontent.com/procsynth/ProcessingLiveJS/master/examples/example.js), or at the bottom of this file).
 
 __THIS REQUIRE JAVA 8.__
 
@@ -15,7 +15,7 @@ You don't need to have processing on your computer, all the magic is in the jar.
 
 ## WHAT TO EXPECT
 
-The file you selected will be read each time you save it. (Auto-save plugin may exists for your text editor.)
+The file you selected will be read each time you save it. (Auto-save plugin may exists for your text editor : [Auto-save for Sublime Text](https://packagecontrol.io/packages/auto-save).
 You will be able to do live coding on Processing.
 The sketch window is resizable by hand.
 
@@ -25,7 +25,9 @@ Keep in mind this is an experiment made in less than 2 hours, you can quickly br
 
 The code you write in the JS file is like you're executing it in the draw.
 
-You can define global variable the traditional way, it will be reset at each draw. Instead use `define` :
+The renderer is set to `P3D`.
+
+You can define global variable the traditional way, but it will be reset at each draw. Instead use `define` :
 
 ```javascript
 	define("variableName", initValue); 

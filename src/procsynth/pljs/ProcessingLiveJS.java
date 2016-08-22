@@ -36,6 +36,7 @@ public class ProcessingLiveJS extends PApplet{
 
 	private static String scriptPath = null;
 	private static boolean opening = false;
+	private static boolean first = true;
 
 	private static ScriptEngineManager engineManager;
 	private static ScriptEngine nashorn;
@@ -73,16 +74,17 @@ public class ProcessingLiveJS extends PApplet{
 			opening = true;
 			selectInput("Select script to live from", "openFile");
 		}else if(scriptPath != null){
+			if(first){text("OPENED: "+scriptPath, 20, 90); first = false;}
 			try{
 				nashorn.eval(readFile(scriptPath));
-				nashorn.eval("loop()");
 			}catch (ScriptException e) {
-				println("error in the loop function");
 				background(0);	
 				text(e.getMessage(), 20, 30);
 				e.printStackTrace();		
-			}catch (Exception e) {
-				println("no `loop` function found!");
+			}catch (IOException e) {
+				background(0);	
+				text(e.getMessage(), 20, 30);
+				e.printStackTrace();		
 			}
 		}else{
 			// waiting for file;
@@ -98,7 +100,6 @@ public class ProcessingLiveJS extends PApplet{
 			String filepath = file.getAbsolutePath();
 			try{
 				if(file.isFile()){
-					String source = readFile(filepath);
 					scriptPath = filepath;
 				}
 			}catch(Exception i){
