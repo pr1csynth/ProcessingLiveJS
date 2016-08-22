@@ -8,6 +8,8 @@ PLJS is a live Processing interpreter that use Javascript.
 
 Simply download and run the [pljs.jar file](https://github.com/procsynth/ProcessingLiveJS/raw/master/dist/pljs.jar) and select a javascript file ([like the one in the example folder](https://raw.githubusercontent.com/procsynth/ProcessingLiveJS/master/examples/example.js), or at the bottom of this file).
 
+__THIS REQUIRE JAVA 8.__
+
 You don't need to have processing on your computer, all the magic is in the jar.
 
 ## WHAT TO EXPECT
