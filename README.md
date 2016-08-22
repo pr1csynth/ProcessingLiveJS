@@ -9,12 +9,12 @@ Simply download and run the [pljs.jar file](https://github.com/procsynth/Process
 ## WHAT TO EXPECT
 
 The file you selected will be read each time you save it. (Auto-save plugin may exists for your text editor.)
-You will be able to do live coding on Processing
+You will be able to do live coding on Processing.
 The sketch window is resizable by hand.
 
-Only the `draw` function is supported at the moment. Your code should be inside the `draw` function
+Only the `draw` function is supported at the moment. Your code should be inside the `draw` function.
 
-Keep in mind this is an experiement made in less than 2 hours, you can quickly break it !
+Keep in mind this is an experiment made in less than 2 hours, you can quickly break it !
 
 ## THINGS TO KNOW
 
