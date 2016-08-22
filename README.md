@@ -2,7 +2,8 @@
 
 PLJS is a live Processing interpreter that use Javascript.
 
-![screenshot from 2016-08-22 03-38-14](https://cloud.githubusercontent.com/assets/321345/17841546/efd0281c-6819-11e6-9e9b-d16ae0b278c7.png)
+![screenshot from 2016-08-22 13-30-57](https://cloud.githubusercontent.com/assets/321345/17853432/b05113ba-686c-11e6-92d0-bea08a830032.png)
+
 
 ## USAGE
 
