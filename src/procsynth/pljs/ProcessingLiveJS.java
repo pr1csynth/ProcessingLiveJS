@@ -40,15 +40,8 @@ public class ProcessingLiveJS extends PApplet{
 	private static ScriptEngineManager engineManager;
 	private static ScriptEngine nashorn;
 
-	private static List<ScriptContext> contexts;
-	
-
 	public static void main(String[] args) {
 		PApplet.main(MAIN_WINDOW);
-
-		engineManager = new ScriptEngineManager();
-		nashorn = engineManager.getEngineByName("nashorn");
-		contexts = new ArrayList<ScriptContext>();
 	}
 
 	public void settings() {
@@ -59,6 +52,20 @@ public class ProcessingLiveJS extends PApplet{
 		println("PLJS "+ VERSION + " / procsynth");
 		frameRate(50);
 		surface.setResizable(true);
+
+		engineManager = new ScriptEngineManager();
+		nashorn = engineManager.getEngineByName("nashorn");
+
+		try{
+			Object global = nashorn.eval("this");
+			Object jsObject = nashorn.eval("Object");
+			// calling Object.bindProperties(global, this);
+			// which will "bind" properties of the PApplet object
+			((Invocable)nashorn).invokeMethod(jsObject, "bindProperties", global, (PApplet)this);
+			nashorn.eval("function define(varname, val){if(typeof this[varname] == 'undefined')this[varname] = val;}");
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void draw() {
@@ -68,18 +75,14 @@ public class ProcessingLiveJS extends PApplet{
 		}else if(scriptPath != null){
 			try{
 				nashorn.eval(readFile(scriptPath));
-				nashorn.put("p", (PApplet)this);
-				nashorn.eval("draw.call()");
-				contexts.add(nashorn.getContext());
+				nashorn.eval("loop()");
 			}catch (ScriptException e) {
-				if(contexts.size() != 0){
-					restoreWorkingContext();
-				}			
+				println("error in the loop function");
+				background(0);	
+				text(e.getMessage(), 20, 30);
+				e.printStackTrace();		
 			}catch (Exception e) {
-				// oops
-				//e.printStackTrace();
-
-				println("no `draw` function found!");
+				println("no `loop` function found!");
 			}
 		}else{
 			// waiting for file;
@@ -87,23 +90,6 @@ public class ProcessingLiveJS extends PApplet{
 			text("PLJS", 20, 30);
 			text("PROCSYNTH 2016", 20, 50);
 			text("WAITING FOR FILE...", 20, 70);
-		}
-	}
-
-	public void restoreWorkingContext(){
-		if(contexts.size() != 0){
-			ScriptContext c = contexts.get(contexts.size()-1);
-			try{
-				nashorn.setContext(c);
-				nashorn.eval("draw.call()");
-				println("Last workingContext: "+contexts.size());
-			}catch (Exception f) {
-				contexts.remove(c);
-				//f.printStackTrace();
-				//restoreWorkingContext();
-			}
-		}else{
-			println("Exhausted contexts...");
 		}
 	}
 

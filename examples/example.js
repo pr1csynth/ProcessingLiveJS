@@ -1,59 +1,25 @@
-// example.js
+// exame.js
 
-// Welcome to ProcessingLiveJS
+// Welcome to ocessingLiveJS
 
-/* PLJS is a live Processing interpreter that use Javascript.
+/* JS is a live ocessing intereter that use Javascri.
 
-Simply double click on the pljs.jar file and select a javascript file (like this one)
+Simy double click on the js.jar file and select a javascri file (like this one)
 
 The file you selected will be read at each frame.
 The sketch window is resizable by hand.
 
-Only the draw function is supported at the moment.
-
-The PApplet object is imported as p. That means that at the moment, every Processing method, field or constant should be 
-prefixed by "p." :
-
-	millis() 			=> p.millis()
-	background() 		=> p.background()
-	mouseX 				=> p.mouseX
-	rectMode(CORNER) 	=> p.rectMode(p.CORNER) 
-
-To print something in the console just use the`print` function : `print("Hello")`
-
-Math function (sin, cos, asin, acos, tan, round, min, max, ...) is accessible with the Math object : 
-	
-	sin(i)	=> Math.sin(i)
-	sin(i)	=> Math.sin(i)
-	println(round(frameRate))) => print(Math.round(p.frameRate))
-
-You can define variable outside the draw function using
-	
-	var myVariable;
-
-But initializing variables with a value is a bit trickier at the moment :
-
-	var hello = hello == undefined ? "world" : hello;
-
-this initialize a variable `hello` with the value "world"
-
 */
 
-var i = i == undefined ? 0 : i;
+define("i", 0)
 
-function draw(){
+i++;
 
-	if(p.frameCount % 100 == 0)
-		print("FPS "+Math.round(p.frameRate))
+background(127+Math.cos(millis()/2000)*127, 0, 127+Math.sin(millis()/2000)*127)
 
-	p.background(127+Math.cos(p.millis()/2000)*127, 0, 127+Math.sin(p.millis()/2000)*127)
-
-	p.translate(p.width/2, p.height/2, 100)
-	p.rotateX(p.millis()/500)
-	p.rotateY(p.millis()/700)
-	p.stroke(255)
-	p.noFill()
-	p.box(Math.abs(p.mouseX-p.width/2), Math.abs(p.mouseY-p.height/2), Math.sin(i/20)*300)
-
-	i++;
-}
+translate(width/2, height/2, -100)
+rotateX(millis()/3090)
+rotateY(millis()/1000)
+stroke(255)
+noFill()
+box(Math.abs(mouseX-width/2), Math.abs(mouseY-height/2), Math.sin(i/20)*300)
